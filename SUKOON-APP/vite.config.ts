@@ -4,5 +4,6 @@ import tsconfigPaths from "vite-tsconfig-paths"
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/SUKOON/',  // Adjust base path for GitHub Pages
   plugins: [react(), tsconfigPaths()],
 })
