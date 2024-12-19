@@ -1,0 +1,55 @@
+/* login.css */
+@media (max-width: 480px) {
+  .loginStartStack {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: flex-start; /* Align elements at the top */
+    align-items: center; /* Center elements horizontally */
+    height: 100vh; /* Full viewport height */
+    padding: 0 20px; /* Add side padding */
+    position: relative; /* Ensure positioning context for video */
+  }
+
+  .loginAnimation {
+    width: 100%; /* Make video take full width of the container */
+    height: 50vh; /* Video takes up 50% of the viewport height */
+    object-fit: cover; /* Ensure video covers the container */
+    object-position: center; /* Center the video within the container */
+    display: block; /* Ensure the video is treated as a block element */
+    border: none; /* Remove any borders */
+    padding: 0; /* Remove any padding */
+    margin: 0; /* Remove any margin */
+  }
+
+  /* Styling for the Heading and Text */
+  .loginStart-Heading, .loginStart-text {
+    text-align: center; /* Center text */
+    margin: 10px 0; /* Space out elements */
+    color: black;
+    z-index: 1; /* Ensure text appears above the video */
+    font-size: 190%;
+  }
+
+  .loginStart-text {
+    font-weight: bold;
+    font-size: 110%;
+  }
+
+  .loginStart-Heading {
+    color: #3B8A2B;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    width: 80%;
+  }
+
+  .loginStart-Button {
+    margin: 10px 0; /* Space out buttons */
+    width: 90%; /* Ensure buttons are not too wide */
+    z-index: 1; /* Ensure buttons appear above the video */
+    height: 60px;
+    font-size: 130%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+  }
+}
