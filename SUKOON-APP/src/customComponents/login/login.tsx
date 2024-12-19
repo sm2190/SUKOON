@@ -7,7 +7,7 @@ const login = () => {
     <div>
 
       <Stack className='loginStartStack'>
-        <video className='loginAnimation'>
+        <video className='loginAnimation' autoPlay loop>
 
           <source src={LoginAnimation} type='video/mp4'/>
           Your browser does not support mp4s.

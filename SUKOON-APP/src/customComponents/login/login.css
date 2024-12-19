@@ -13,12 +13,14 @@
   .loginAnimation {
     width: 100%; /* Make video take full width of the container */
     height: 50vh; /* Video takes up 50% of the viewport height */
-    object-fit: cover; /* Ensure video covers the container */
+    object-fit: contain; /* Adjust to fit the video without cropping */
     object-position: center; /* Center the video within the container */
     display: block; /* Ensure the video is treated as a block element */
     border: none; /* Remove any borders */
     padding: 0; /* Remove any padding */
     margin: 0; /* Remove any margin */
+    outline: none; /* Ensure no outline */
+    box-sizing: border-box; /* Include border and padding in the element's width and height calculation */
   }
 
   /* Styling for the Heading and Text */
