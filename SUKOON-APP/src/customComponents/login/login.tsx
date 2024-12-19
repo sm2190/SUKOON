@@ -1,5 +1,4 @@
-import { Button, Flex, Heading, Stack, Text } from '@chakra-ui/react'
-import React from 'react'
+import { Button, Heading, Stack, Text } from '@chakra-ui/react'
 import './login.css'
 import LoginAnimation from '@/images/animatedIcons/Forest-Waterfall.mp4'
 
