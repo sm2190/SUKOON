@@ -1,10 +1,12 @@
-import Login from '@/customComponents/login/login.tsx'
+import Auth from '@/customComponents/login/auth.tsx'
+import Register from '@/customComponents/login/register.tsx'
 
 const App = () => {
   return (
-    <Login>
 
-    </Login>
+    <Register>
+      
+    </Register>
   )
 }
 

@@ -1,8 +1,8 @@
 import { Button, Heading, Stack, Text } from '@chakra-ui/react'
-import './login.css'
+import './auth.css'
 import LoginAnimation from '@/images/animatedIcons/Forest-Waterfall.mp4'
 
-const login = () => {
+const auth = () => {
   return (
     <div>
 
@@ -34,4 +34,4 @@ const login = () => {
   )
 }
 
-export default login;
+export default auth;

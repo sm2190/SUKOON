@@ -8,19 +8,20 @@
     height: 100vh; /* Full viewport height */
     padding: 0 20px; /* Add side padding */
     position: relative; /* Ensure positioning context for video */
+    overflow: hidden; /* Prevent any video overflow */
   }
 
   .loginAnimation {
     width: 100%; /* Make video take full width of the container */
     height: 50vh; /* Video takes up 50% of the viewport height */
-    object-fit: contain; /* Adjust to fit the video without cropping */
+    object-fit: cover; /* Make video cover the container */
     object-position: center; /* Center the video within the container */
     display: block; /* Ensure the video is treated as a block element */
     border: none; /* Remove any borders */
     padding: 0; /* Remove any padding */
     margin: 0; /* Remove any margin */
     outline: none; /* Ensure no outline */
-    box-sizing: border-box; /* Include border and padding in the element's width and height calculation */
+    box-sizing: border-box; /* Ensure that border and padding are included in the element's size */
   }
 
   /* Styling for the Heading and Text */
