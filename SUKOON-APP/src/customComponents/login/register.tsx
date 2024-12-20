@@ -1,52 +1,75 @@
-import { Flex, Heading, Stack, Input, Button } from '@chakra-ui/react';
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-} from '@chakra-ui/form-control';
-import React from 'react';
+import { Flex, Heading, Stack, Input, Button, Box } from '@chakra-ui/react';
+import { LuUser } from "react-icons/lu";
+import { MdOutlineEmail } from "react-icons/md";
+import { CiLock } from "react-icons/ci";
 import TopBorderImage from '@/images/pngegg (1).png';
+import './register.css';
 
 const Register = () => {
   return (
-    <div>
+    <div style={{ overflowX: 'hidden' }}> {/* Prevent horizontal scrolling */}
       {/* Top Section with Image and Heading */}
-      <Flex position={'relative'} display={'flex'} justifyContent="center">
+      <Flex className='registerTop' overflow="hidden" position="relative" width="100%">
         {/* Image */}
-        <img src={TopBorderImage} alt="border image" style={{ width: '100%' }} />
-        
-        {/* Heading on top of the image */}
-        <Heading
-          position={'absolute'}
-          top={'50%'} // Centers the heading vertically
-          left={'50%'} // Centers the heading horizontally
-          transform={'translate(-50%, -50%)'} // Adjust for exact centering
-          color={'black'}
-          fontSize={'2xl'} // Adjust the font size as needed
-        >
-          Sign Up
-        </Heading>
+        <img
+          src={TopBorderImage}
+          alt="border image"
+          style={{
+            width: '100%',
+            height: 'auto',  
+            objectFit: 'cover',  
+            maxHeight: '100vh',  
+          }}
+        />
+
+        <Heading className='signUpHeading'>Sign Up</Heading>
       </Flex>
 
-      {/* Form Section */}
-      <Stack spacing={4} p={4}>
-        <FormControl>
-          <FormLabel>Email</FormLabel>
-          <Input type="email" placeholder="Enter your email" />
-        </FormControl>
+      <Stack className='signUpDataInputStack' spaceY={5}>
+      <Box className='OuterInputBox'>
+          <Input
+            placeholder="Username"
+            pl="30px"  
+          />
 
-        <FormControl>
-          <FormLabel>Username</FormLabel>
-          <Input type="text" placeholder="Enter your username" />
-        </FormControl>
+          <Box className='InnerInputBox'>
+            <LuUser />
+          </Box>
+        </Box>
 
-        <FormControl>
-          <FormLabel>Password</FormLabel>
-          <Input type="password" placeholder="Enter your password" />
-        </FormControl>
+        <Box className='OuterInputBox'>
+          <Input
+            placeholder="Email"
+            pl="30px"  
+          />
 
-        {/* Submit Button */}
+          <Box className='InnerInputBox'>
+            <MdOutlineEmail />
+          </Box>
+        </Box>
+
+        <Box className='OuterInputBox'>
+          <Input
+            placeholder="Password"
+            pl="30px"  
+          />
+
+          <Box className='InnerInputBox'>
+            <CiLock />
+          </Box>
+        </Box>
+
+        <Box className='OuterInputBox'>
+          <Input
+            placeholder="Confirm Password"
+            pl="30px"  
+          />
+
+          <Box className='InnerInputBox'>
+            <CiLock />
+          </Box>
+        </Box>
+
         <Button colorScheme="blue" mt={4}>
           Register
         </Button>
