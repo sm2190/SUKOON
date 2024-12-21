@@ -4,7 +4,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { CiLock } from "react-icons/ci";
 import TopBorderImage from '@/images/pngegg (1).png';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
-import './register.css';
+import './Register.css';
 
 const Register = () => {
   const navigate = useNavigate(); // Initialize navigate function
