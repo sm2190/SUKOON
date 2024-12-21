@@ -30,3 +30,14 @@ body {
 * {
     outline: 1px solid red;
 }
+
+html, body {
+    height: 100%;
+    overflow-y: hidden; /* Prevent vertical scrolling */
+  }
+  
+  #root {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
