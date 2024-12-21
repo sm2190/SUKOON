@@ -18,7 +18,6 @@
     object-position: center; /* Center the video within the container */
     display: block; /* Ensure the video is treated as a block element */
     border: none; /* Remove any borders */
-    padding: 0; /* Remove any padding */
     margin: 0; /* Remove any margin */
     outline: none; /* Ensure no outline */
     box-sizing: border-box; /* Ensure that border and padding are included in the element's size */
