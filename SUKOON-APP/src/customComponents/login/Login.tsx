@@ -13,6 +13,10 @@ const Login = () => {
     navigate('/'); // Navigate to the root Auth page
   };
 
+  const goToQR = () => {
+    navigate('/QRWait'); // Navigate to the root Auth page
+  };
+
   return (
     <div style={{ overflowX: 'hidden' }}>
       <Flex className='registerTop' overflow="hidden" position="relative" width="100%">
@@ -66,7 +70,7 @@ const Login = () => {
           </Box>
         </Box>
 
-        <Button className='next-Button' backgroundColor={'#6cce58'} color={'#f6f6f6'}>
+        <Button className='next-Button' backgroundColor={'#6cce58'} color={'#f6f6f6'} onClick={goToQR}>
           Next
         </Button>
 
