@@ -1,20 +1,17 @@
-// App.tsx
-import { Route, Routes } from 'react-router-dom'; // Import Routes and Route
-import Register from '@/customComponents/login/register.tsx';
-import Auth from '@/customComponents/login/auth.tsx';
-import Login from '@/customComponents/login/Login.tsx';
+import { Routes, Route } from 'react-router-dom';
+import RoomList from './customComponents/rooms/roomsList.tsx';  // Your import for RoomList
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Auth />} />         {/* Home or Auth page */}
-      <Route path="/login" element={<Login />} />   {/* Login page */}
-      <Route path="/register" element={<Register />} /> {/* Register page */}
-    </Routes>
+    <div>
+      <Routes>
+        <Route path="/" element={<RoomList />} />
+        {/* Add more routes here if needed */}
+      </Routes>
+    </div>
   );
 };
 
 export default App;
-
 
 
