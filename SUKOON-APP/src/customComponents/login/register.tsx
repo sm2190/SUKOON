@@ -10,6 +10,7 @@ import { useState } from 'react'
 import { auth } from '@/logic/firebaseConfig.tsx'
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
+import { FormControl } from '@chakra-ui/form-control'
 
 const Register = () => {
   
@@ -43,41 +44,59 @@ const Register = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Reset error states
+    // Reset all error states
     setEmailError('');
     setPasswordError('');
     setUsernameError('');
-
+    
+    let isValid = true;
+  
+    // Check if username is empty
     if (!username) {
       setUsernameError('Username is required.');
-      return;
+      isValid = false;
     }
-
+  
+    // Check if email is empty
+    if (!email) {
+      setEmailError('Email is required.');
+      isValid = false;
+    }
+  
     // Validate password match
-    if (password !== confirmPassword) {
+    if (!password || !confirmPassword) {
+      setPasswordError('Both password fields are required.');
+      isValid = false;
+    } else if (password !== confirmPassword) {
       setPasswordError('Passwords do not match.');
+      isValid = false;
+    }
+  
+    // Stop execution if validation fails
+    if (!isValid) {
       return;
     }
-
+  
     // Check if email already exists
-    const emailInUse = await checkIfEmailExists(email);
-    if (emailInUse) {
-      setEmailError('Email is already registered.');
-      return;
-    }
-
-    // If email and passwords are valid, create the account
     try {
+      const emailInUse = await checkIfEmailExists(email);
+      if (emailInUse) {
+        setEmailError('Email is already registered.');
+        return;
+      }
+  
+      // Create the account
       await createUserWithEmailAndPassword(getAuth(), email, password);
-      navigate('/home'); // Redirect to home page or any other page after successful registration
+      navigate('/home'); // Redirect to home page
     } catch (error) {
-      console.error("Registration Error:", error);
+      console.error('Registration Error:', error);
       setEmailError('An error occurred during registration.');
     }
   };
+  
 
   return (
-    <div style={{ overflowX: 'hidden' }}> {/* Prevent horizontal scrolling */}
+    <div style={{ overflowX: 'hidden' }}> 
       <Flex className='registerTop' overflow="hidden" position="relative" width="100%">
         <img
           src={TopBorderImage}
@@ -103,7 +122,7 @@ const Register = () => {
             position="absolute"
             left="-15%"
             boxShadow='0 4px 8px rgba(0, 0, 0, 0.2)'
-            onClick={goToAuth} // Add onClick to navigate back
+            onClick={goToAuth} 
           >
             <Text color={'white'}>&lt;</Text>
           </Button>
@@ -113,74 +132,98 @@ const Register = () => {
           </Heading>
         </Flex>
 
-        <Box className='OuterInputBox'>
-          <Input
-            placeholder="Username"
-            className='InputData'
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <Box className='InnerInputBox'>
-            <LuUser />
-          </Box>
-        </Box>
-        {usernameError && <Text color={'red.500'}>{usernameError}</Text>}
+        <Box width="130%" display="flex" flexDirection="column" p={0} m={0}>
+          <FormControl isInvalid={!!usernameError} width={'100%'}>
 
-        <Box className='OuterInputBox'>
-          <Input
-            placeholder="Email"
-            className='InputData'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <Box className='InnerInputBox'>
-            <MdOutlineEmail />
-          </Box>
+            <Box className='OuterInputBox'>
+              <Input
+                placeholder="Username"
+                className='InputData'
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <Box className='InnerInputBox'>
+                <LuUser />
+              </Box>
+            </Box>
+            {usernameError && <Text color={'red.500'}>{usernameError}</Text>}
+          </FormControl>     
         </Box>
-        {emailError && <Text color={'red.500'}> {emailError} </Text>}
+        
+        
+        <Box width="130%" display="flex" flexDirection="column" p={0} m={0}>
+          <FormControl isInvalid={!!emailError} width={'100%'}>
+            <Box className='OuterInputBox'>
+              <Input
+                placeholder="Email"
+                className='InputData'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <Box className='InnerInputBox'>
+                <MdOutlineEmail />
+              </Box>
+            </Box>
+            {emailError && <Text color={'red.500'}> {emailError} </Text>}
 
-        <Box className='OuterInputBox'>
-          <Input
-            placeholder="Password"
-            className='InputData'
-            type={showPassword ? 'text' : 'password'} // Toggle password visibility
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Box className='InnerInputBox'>
-            <CiLock />
-          </Box>
-          <HStack position="absolute" right="10px" top="50%" transform="translateY(-50%)">
-            <Button 
-              size="sm" 
-              onClick={() => setShowPassword(prev => !prev)}
-            >
-              {showPassword ? <FiEyeOff /> : <FiEye />}
-            </Button>
-          </HStack>
+          </FormControl>
         </Box>
+        
+        <Box width="130%" display="flex" flexDirection="column" p={0} m={0}>
+          <FormControl isInvalid={!!passwordError} width={'100%'}>
 
-        <Box className='OuterInputBox'>
-          <Input
-            placeholder="Confirm Password"
-            className='InputData'
-            type={showConfirmPassword ? 'text' : 'password'} // Toggle confirm password visibility
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-          <Box className='InnerInputBox'>
-            <CiLock />
-          </Box>
-          <HStack position="absolute" right="10px" top="50%" transform="translateY(-50%)">
-            <Button 
-              size="sm" 
-              onClick={() => setShowConfirmPassword(prev => !prev)}
-            >
-              {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
-            </Button>
-          </HStack>
+            <Box className='OuterInputBox'>
+              <Input
+                placeholder="Password"
+                className='InputData'
+                type={showPassword ? 'text' : 'password'} // Toggle password visibility
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <Box className='InnerInputBox'>
+                <CiLock />
+              </Box>
+              <HStack position="absolute" right="10px" top="50%" transform="translateY(-50%)">
+                <Button 
+                  size="sm" 
+                  onClick={() => setShowPassword(prev => !prev)}
+                >
+                  {showPassword ? <FiEyeOff /> : <FiEye />}
+                </Button>
+              </HStack>
+            </Box>
+
+          </FormControl>
         </Box>
-        {passwordError && <Text color="red.500">{passwordError}</Text>}
+        
+        <Box width="130%" display="flex" flexDirection="column" p={0} m={0}>
+          <FormControl isInvalid={!!passwordError} width={'100%'}>
+
+            <Box className='OuterInputBox'>
+              <Input
+                placeholder="Confirm Password"
+                className='InputData'
+                type={showConfirmPassword ? 'text' : 'password'} // Toggle confirm password visibility
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+              <Box className='InnerInputBox'>
+                <CiLock />
+              </Box>
+              <HStack position="absolute" right="10px" top="50%" transform="translateY(-50%)">
+                <Button 
+                  size="sm" 
+                  onClick={() => setShowConfirmPassword(prev => !prev)}
+                >
+                  {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
+                </Button>
+              </HStack>
+            </Box>
+            {passwordError && <Text color="red.500">{passwordError}</Text>}
+
+          </FormControl>
+        </Box>
+        
 
         <Button className='next-Button' backgroundColor={'#6cce58'} color={'#f6f6f6'} onClick={handleSubmit}>
           Next
