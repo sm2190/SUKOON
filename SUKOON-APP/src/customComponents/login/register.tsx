@@ -5,12 +5,75 @@ import { CiLock } from "react-icons/ci";
 import TopBorderImage from '@/images/pngegg (1).png';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 import './Register.css';
+import { getAuth, fetchSignInMethodsForEmail, createUserWithEmailAndPassword } from 'firebase/auth';
+import { useState } from 'react'
+import { auth } from '@/logic/firebaseConfig.tsx'
+import { FiEye } from "react-icons/fi";
+import { FiEyeOff } from "react-icons/fi";
 
 const Register = () => {
+  
   const navigate = useNavigate(); // Initialize navigate function
 
   const goToAuth = () => {
     navigate('/'); // Navigate to Auth page
+  };
+
+  const [username, setUsername] = useState(''); // State for username
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [usernameError, setUsernameError] = useState(''); // State for username error
+  const [emailExists, setEmailExists] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false); // State for toggling confirm password visibility
+
+  const checkIfEmailExists = async (email: string) => {
+    try {
+      const methods = await fetchSignInMethodsForEmail(getAuth(), email);
+      return methods.length > 0;
+    } catch (error) {
+      console.error("Error checking email:", error);
+      return false;
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Reset error states
+    setEmailError('');
+    setPasswordError('');
+    setUsernameError('');
+
+    if (!username) {
+      setUsernameError('Username is required.');
+      return;
+    }
+
+    // Validate password match
+    if (password !== confirmPassword) {
+      setPasswordError('Passwords do not match.');
+      return;
+    }
+
+    // Check if email already exists
+    const emailInUse = await checkIfEmailExists(email);
+    if (emailInUse) {
+      setEmailError('Email is already registered.');
+      return;
+    }
+
+    // If email and passwords are valid, create the account
+    try {
+      await createUserWithEmailAndPassword(getAuth(), email, password);
+      navigate('/home'); // Redirect to home page or any other page after successful registration
+    } catch (error) {
+      console.error("Registration Error:", error);
+      setEmailError('An error occurred during registration.');
+    }
   };
 
   return (
@@ -54,43 +117,72 @@ const Register = () => {
           <Input
             placeholder="Username"
             className='InputData'
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <Box className='InnerInputBox'>
             <LuUser />
           </Box>
         </Box>
+        {usernameError && <Text color={'red.500'}>{usernameError}</Text>}
 
         <Box className='OuterInputBox'>
           <Input
             placeholder="Email"
             className='InputData'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <Box className='InnerInputBox'>
             <MdOutlineEmail />
           </Box>
         </Box>
+        {emailError && <Text color={'red.500'}> {emailError} </Text>}
 
         <Box className='OuterInputBox'>
           <Input
             placeholder="Password"
             className='InputData'
+            type={showPassword ? 'text' : 'password'} // Toggle password visibility
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <Box className='InnerInputBox'>
             <CiLock />
           </Box>
+          <HStack position="absolute" right="10px" top="50%" transform="translateY(-50%)">
+            <Button 
+              size="sm" 
+              onClick={() => setShowPassword(prev => !prev)}
+            >
+              {showPassword ? <FiEyeOff /> : <FiEye />}
+            </Button>
+          </HStack>
         </Box>
 
         <Box className='OuterInputBox'>
           <Input
             placeholder="Confirm Password"
             className='InputData'
+            type={showConfirmPassword ? 'text' : 'password'} // Toggle confirm password visibility
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <Box className='InnerInputBox'>
             <CiLock />
           </Box>
+          <HStack position="absolute" right="10px" top="50%" transform="translateY(-50%)">
+            <Button 
+              size="sm" 
+              onClick={() => setShowConfirmPassword(prev => !prev)}
+            >
+              {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
+            </Button>
+          </HStack>
         </Box>
+        {passwordError && <Text color="red.500">{passwordError}</Text>}
 
-        <Button className='next-Button' backgroundColor={'#6cce58'} color={'#f6f6f6'}>
+        <Button className='next-Button' backgroundColor={'#6cce58'} color={'#f6f6f6'} onClick={handleSubmit}>
           Next
         </Button>
 
@@ -127,6 +219,6 @@ const Register = () => {
       </Stack>
     </div>
   );
-};
+}
 
 export default Register;
