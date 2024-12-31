@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button, Box, Text, Image, Grid, Heading, Flex } from '@chakra-ui/react';
-import AddRoom from './addRooms';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate to handle navigation
+import AddRoom from './addRooms'; // Assuming you have this component for adding rooms
 
 // Import room images
 import LivingRoomImg from '@/images/roomsImage/livingRoom.jpeg';
@@ -16,6 +17,8 @@ import LaundryImg from '@/images/roomsImage/laundry.jpg';
 import PlaceholderUserImage from '@/images/roomsImage/userCircle.png';
 
 const RoomList = () => {
+  const navigate = useNavigate(); // Initialize the navigate function
+
   const [rooms, setRooms] = useState([
     { id: 1, name: 'Living Room', image: LivingRoomImg, devices: 5 },
     { id: 2, name: 'Master Bedroom', image: BedroomImg, devices: 12 },
@@ -30,35 +33,30 @@ const RoomList = () => {
   const [showAddRoom, setShowAddRoom] = useState(false);
 
   const handleAddRoom = (newRoom: any) => {
-    setRooms([...rooms, { ...newRoom, id: rooms.length + 1 }]);
+    // Dynamically set the room ID based on the current length of rooms
+    const newRoomId = rooms.length ? rooms[rooms.length - 1].id + 1 : 1;
+
+    // Add the new room with the dynamically generated ID
+    setRooms([...rooms, { ...newRoom, id: newRoomId }]);
     setShowAddRoom(false);
   };
 
   return (
-    <Box p={6} bg="white" minHeight="100vh" pb="90px"> {/* Increased padding-bottom to 100px */}
+    <Box p={6} bg="white" minHeight="100vh" pb="90px">
       {/* Header */}
       <Flex justifyContent="space-between" alignItems="center" mb={8}>
-        {/* Greeting on the left */}
         <Heading as="h1" size="lg" fontWeight="bold" color="#464646" fontSize="50px">
           Hi, User
         </Heading>
-        {/* Placeholder image on the right */}
-        <Image 
-          src={PlaceholderUserImage} 
-          alt="User" 
-          boxSize="50px" 
-          borderRadius="full" 
-        />
+        <Image src={PlaceholderUserImage} alt="User" boxSize="50px" borderRadius="full" />
       </Flex>
 
       {/* "Your Rooms" Section */}
       <Flex justifyContent="space-between" alignItems="center" mb={6}>
-        {/* Title */}
         <Heading as="h2" fontSize="32px" color="#464646">
           <Text as="span" fontWeight="normal">Your </Text>
           <Text as="span" fontWeight="bold">Rooms</Text>
         </Heading>
-        {/* Add Room Button */}
         <Button
           bg="#6cce58"
           color="white"
@@ -85,6 +83,8 @@ const RoomList = () => {
             boxShadow="lg"
             bg="white"
             p={4}
+            cursor="pointer" // Change the cursor to indicate it's clickable
+            onClick={() => navigate(`/devices/${room.id}`)} // Navigate to devices page with roomId
           >
             <Image
               src={room.image}
