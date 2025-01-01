@@ -1,21 +1,56 @@
-import { Box, Button, Flex, Heading, Input, Stack, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Heading, HStack, Input, Stack, Text } from '@chakra-ui/react';
 import TopBorderImage from '@/images/pngegg (1).png';
 import './Register.css';
 import { CiLock } from 'react-icons/ci';
 import { MdOutlineEmail } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import React, { useState } from 'react'
-import { getAuth, signInWithEmailAndPassword, AuthError } from 'firebase/auth'
+import { getAuth, signInWithEmailAndPassword, AuthError, fetchSignInMethodsForEmail } from 'firebase/auth'
+import { FormControl } from '@chakra-ui/form-control';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 
 const Login = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
 
   const handleLogin = async(e: React.FormEvent<HTMLFormElement>) => {
 
     e.preventDefault();
+    setEmailError('');
+    setPasswordError('');
+    let isValid = true;
+
+    if (!email) {
+      setEmailError('Invalid Email or Password.');
+      isValid = false;
+    }
+
+    if (!password) {
+      setPasswordError('Invalid Email or Password.');
+      isValid = false;
+    }
+
+    try {
+      const methods = await fetchSignInMethodsForEmail(getAuth(), email);
+      if (!(methods.length > 0)) {
+        setEmailError('Invalid Email or Password')
+        setPasswordError('Invalid Email or Password')
+        isValid = false;
+      }
+    } 
+    catch (error) {
+      console.error("Error checking email:", error);
+      return false;
+    }
+
+    if (!isValid) {
+      return;
+    }
 
     try {
       await signInWithEmailAndPassword(getAuth(), email, password);
@@ -23,6 +58,8 @@ const Login = () => {
     } catch (err) {
       const errorMessage = (err as AuthError).message;
       setError(errorMessage);
+      setEmailError(errorMessage.includes("email") ? errorMessage : ''); 
+      setPasswordError(errorMessage.includes("password") ? errorMessage : '');
     }
 
   };
@@ -82,18 +119,46 @@ const Login = () => {
           </Heading>
         </Flex>
 
-        <Box className='OuterInputBox'>
-          <Input placeholder="Email" className='InputData' value={email} onChange={(e) => setEmail(e.target.value)}/>
-          <Box className='InnerInputBox'>
-            <MdOutlineEmail />
-          </Box>
+        <Box width="130%" display="flex" flexDirection="column" p={0} m={0}>
+          <FormControl isInvalid={!!emailError} width={'100%'}>
+            <Box className='OuterInputBox'>
+              <Input
+                placeholder="Email"
+                className='InputData'
+                value={email}
+              />
+              <Box className='InnerInputBox'>
+                <MdOutlineEmail />
+              </Box>
+            </Box>
+
+          </FormControl>
         </Box>
 
-        <Box className='OuterInputBox'>
-          <Input placeholder="Password" className='InputData' type='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
-          <Box className='InnerInputBox'>
-            <CiLock />
-          </Box>
+        <Box width="130%" display="flex" flexDirection="column" p={0} m={0}>
+          <FormControl isInvalid={!!passwordError} width={'100%'}>
+        
+            <Box className='OuterInputBox'>
+                <Input
+                  placeholder="Password"
+                  className='InputData'
+                  type={showPassword ? 'text' : 'password'} // Toggle password visibility
+                  value={password}
+                />
+                <Box className='InnerInputBox'>
+                  <CiLock />
+                </Box>
+                <HStack position="absolute" right="10px" top="50%" transform="translateY(-50%)">
+                  <Button 
+                    size="sm" 
+                    onClick={() => setShowPassword(prev => !prev)}
+                  >
+                    {showPassword ? <FiEyeOff /> : <FiEye />}
+                  </Button>
+                </HStack>
+            </Box>
+        
+          </FormControl>
         </Box>
 
         <Button className='next-Button' backgroundColor={'#6cce58'} color={'#f6f6f6'} 
@@ -103,6 +168,7 @@ const Login = () => {
           }}>
           Next
         </Button>
+        {(emailError || passwordError) && <Text color={'red.500'} fontSize={'sm'}>Invalid Email or Password</Text>}
 
         <Text className='registeryText'>
           Don't have an account? <span style={{ color: "#6cce58", textDecoration: 'underline'}} onClick={goToRegister}> Sign Up!</span>
