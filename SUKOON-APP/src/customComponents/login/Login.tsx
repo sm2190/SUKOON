@@ -54,7 +54,8 @@ const Login = () => {
 
     try {
       await signInWithEmailAndPassword(getAuth(), email, password);
-      alert("Logged in successfully");
+      console.log("Logged in successfully");
+      navigate('/home');
     } catch (err) {
       const errorMessage = (err as AuthError).message;
       setError(errorMessage);
