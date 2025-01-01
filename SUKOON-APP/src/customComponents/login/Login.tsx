@@ -172,7 +172,7 @@ const Login = () => {
         {(emailError || passwordError) && <Text color={'red.500'} fontSize={'sm'}>Invalid Email or Password</Text>}
 
         <Text className='registeryText'>
-          Don't have an account? <span style={{ color: "#6cce58", textDecoration: 'underline'}} onClick={goToRegister}> Sign Up!</span>
+          Don't have an account? <span style={{ color: "#6cce58", textDecoration: 'underline'}} onClick={goToQR}> Sign Up!</span>
         </Text>
 
         <div className="buttons-container">
