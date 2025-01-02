@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 import './Register.css';
 import { getAuth, fetchSignInMethodsForEmail, createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react'
-import { auth } from '@/logic/firebaseConfig.tsx'
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
 import { FormControl } from '@chakra-ui/form-control'
@@ -27,7 +26,6 @@ const Register = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [usernameError, setUsernameError] = useState(''); // State for username error
-  const [emailExists, setEmailExists] = useState(false);
   const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
   const [showConfirmPassword, setShowConfirmPassword] = useState(false); // State for toggling confirm password visibility
 
@@ -87,7 +85,8 @@ const Register = () => {
   
       // Create the account
       await createUserWithEmailAndPassword(getAuth(), email, password);
-      navigate('/home'); // Redirect to home page
+      sessionStorage.setItem('userEmail', email);
+      navigate('/QRwait'); // Redirect to home page
     } catch (error) {
       console.error('Registration Error:', error);
       setEmailError('An error occurred during registration.');

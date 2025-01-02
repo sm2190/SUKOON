@@ -11,9 +11,9 @@ import { FiEye, FiEyeOff } from 'react-icons/fi';
 
 const Login = () => {
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, ] = useState('');
+  const [password, ] = useState('');
+  const [, setError] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
@@ -55,6 +55,7 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(getAuth(), email, password);
       console.log("Logged in successfully");
+      sessionStorage.setItem('userEmail', email);
       navigate('/home');
     } catch (err) {
       const errorMessage = (err as AuthError).message;
@@ -77,9 +78,7 @@ const Login = () => {
     navigate('/QRWait'); // Navigate to the root Auth page
   };
 
-  const goToRegister = () => {
-    navigate('/register')
-  }
+  
 
   return (
     <div style={{ overflowX: 'hidden' }}>
