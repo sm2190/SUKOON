@@ -1,5 +1,16 @@
 @media (max-width: 480px) {
 
+    .QRStack {
+        transform: translateY(-20%);
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        width: 60%;
+        margin: 0 auto; 
+        
+
+    }
+
     .QRHeader {
         background-color: #6cce58;
         height: 30vw;
@@ -8,25 +19,27 @@
     .QRIcon {
         background-color: transparent;
         color: lightgray;
-        width: 50%;
-        height: 50%;
+        width: 80%;
+        height: 80%;
+        margin-bottom: -50%;
     }
 
     .QRIconContainer {
-        display: flex;
+        display: inline-flex;
         flex-direction: column; 
         justify-content: center;
         align-items: center;
         background-color: transparent;
         height: 70vh; 
+        margin: 0;
+        padding: 0;
     }
 
     .QRHeading {
         color: lightgray;
         font-size: 20px;
-        margin-top: 20px; 
         text-align: center;
-        width: 75%; 
+        margin-bottom: 70px;
     }
 
     .scanButton {
@@ -42,6 +55,7 @@
         margin-right: auto;
         color: white;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transform: translateY(-170%);
     }
 
     .QRCamera {

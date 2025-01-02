@@ -235,9 +235,9 @@ const Register = () => {
 
         <HStack>
           <Box className='regBox' />
-          <Text color={'black'}>
-            or
-          </Text>
+            <Text color={'black'}>
+              or
+            </Text>
           <Box className='regBox' />
         </HStack>
 

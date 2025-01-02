@@ -11,12 +11,22 @@ import { FiEye, FiEyeOff } from 'react-icons/fi';
 
 const Login = () => {
 
-  const [email, ] = useState('');
-  const [password, ] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [, setError] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
+
+
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value); // Update the email state when the user types
+  };
+  
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value); // Update the password state when the user types
+  };
+
 
   const handleLogin = async(e: React.FormEvent<HTMLFormElement>) => {
 
@@ -126,6 +136,7 @@ const Login = () => {
                 placeholder="Email"
                 className='InputData'
                 value={email}
+                onChange={handleEmailChange}
               />
               <Box className='InnerInputBox'>
                 <MdOutlineEmail />
@@ -144,6 +155,7 @@ const Login = () => {
                   className='InputData'
                   type={showPassword ? 'text' : 'password'} // Toggle password visibility
                   value={password}
+                  onChange={handlePasswordChange}
                 />
                 <Box className='InnerInputBox'>
                   <CiLock />
