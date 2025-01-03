@@ -144,7 +144,7 @@ const QRWait = () => {
         </Text>
 
         <Box width="130%" display="flex" flexDirection="column" p={0} m={0}>
-          <FormControl isInvalid={!!hubLinkError} width={'100%'}>
+          <FormControl isInvalid={!!hubLinkError} width={'100%'} color={'black'}>
             <Box className='OuterInputBox'>
               <Input
                 placeholder="Link Code"
