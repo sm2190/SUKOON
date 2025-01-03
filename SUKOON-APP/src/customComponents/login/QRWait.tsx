@@ -14,9 +14,11 @@ const QRWait = () => {
   const [hubLink, setHubLink] = useState('');
   const [hubLinkError, setHubLinkError] = useState('');
 
-  const goToAuth = () => {
-    navigate('/');
+  const goToLogin = () => {
+    navigate('/login');
   };
+
+  
 
 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -169,7 +171,7 @@ const QRWait = () => {
           ml={'auto'}
           mr={'auto'}
           textDecor={'underline'}
-          onClick={goToAuth}
+          onClick={goToLogin}
         >
           Back to Login
         </Heading>

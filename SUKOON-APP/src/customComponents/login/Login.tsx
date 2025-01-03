@@ -8,6 +8,7 @@ import React, { useState } from 'react'
 import { getAuth, signInWithEmailAndPassword, AuthError, fetchSignInMethodsForEmail } from 'firebase/auth'
 import { FormControl } from '@chakra-ui/form-control';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 
 const Login = () => {
 
@@ -66,7 +67,27 @@ const Login = () => {
       await signInWithEmailAndPassword(getAuth(), email, password);
       console.log("Logged in successfully");
       sessionStorage.setItem('userEmail', email);
-      navigate('/home');
+
+      const db = getFirestore();
+      const userDocRef = doc(db, "users", email);
+
+      const docSnapshot = await getDoc(userDocRef);
+
+      if (docSnapshot.exists()) {
+        const userData = docSnapshot.data();
+        if (userData.qrCodeData || userData.hubLink) {
+
+          navigate('/home');
+        } else {
+
+          navigate('/QRWait');
+        }
+      } 
+      
+      else {
+
+        navigate('/QRWait');
+      }
     } catch (err) {
       const errorMessage = (err as AuthError).message;
       setError(errorMessage);
