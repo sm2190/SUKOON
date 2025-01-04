@@ -3,6 +3,10 @@ body {
     font-family: 'SpotifyFont', sans-serif;
 }
 
+* {
+  background-color: white;
+}
+
 @font-face {
     font-family: 'SpotifyFont';
     src: url('react-website/src/assets/Spotify-Font/Gotham-Black.otf') format('opentype');

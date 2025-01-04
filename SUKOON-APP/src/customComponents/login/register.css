@@ -135,6 +135,14 @@
         margin-bottom: 1px;
     }
 
+    .apple-icon {
+        background-color: #000;
+    }
+    
+    .apple-icon:first-child {
+        background-color: #000;
+    }
+
     .backButton, .backButtonText {
         border-radius: 200;
         background-color: #43eb7f; 

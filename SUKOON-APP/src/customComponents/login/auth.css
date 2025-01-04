@@ -8,7 +8,6 @@
     height: 100vh; /* Full viewport height */
     padding: 0 20px; /* Add side padding */
     position: relative; /* Ensure positioning context for video */
-    overflow: hidden; /* Prevent any video overflow */
   }
 
   .loginAnimation {
