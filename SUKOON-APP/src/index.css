@@ -5,14 +5,27 @@ body {
 
 * {
   background-color: white;
+  font-family: 'SpotifyFont', sans-serif;
+}
+
+.Sukoon-logo {
+  font-family: 'BrooklynFont', sans-serif;
 }
 
 @font-face {
-    font-family: 'SpotifyFont';
-    src: url('react-website/src/assets/Spotify-Font/Gotham-Black.otf') format('opentype');
-    font-weight: 400;
-    font-style: normal;
-    color: black;
+  font-family: 'SpotifyFont';
+  src: url('react-website/src/assets/Spotify-Font/Gotham-Black.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  color: black;
+}
+
+@font-face {
+  font-family: 'BrooklynFont';
+  src: url('react-website/src/assets/Brooklyn/Brooklyn_Normal_1.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  color: black;
 }
 
 @font-face {
