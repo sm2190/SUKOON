@@ -40,7 +40,8 @@
     color: #3B8A2B;
     margin-bottom: 20px;
     margin-top: 10px;
-    width: 80%;
+    width: 90%;
+    letter-spacing: normal;
   }
 
   .loginStart-Button {
@@ -56,5 +57,8 @@
 
   .Sukoon-logo {
     font-family: 'BrooklynFont', sans-serif;
+    color: #3B8A2B;
+    font-size: 300%;
+    margin-top: 20px;
   }
 }

@@ -1,11 +1,13 @@
 body {
     background-color: white;
-    font-family: 'SpotifyFont', sans-serif;
+    font-family: 'spotifyFontLight', sans-serif;
+    font-weight: bold;
 }
 
 * {
   background-color: white;
-  font-family: 'SpotifyFont', sans-serif;
+  font-family: 'spotifyFontLight', sans-serif;
+  font-weight: bold;
 }
 
 .Sukoon-logo {
@@ -14,24 +16,24 @@ body {
 
 @font-face {
   font-family: 'SpotifyFont';
-  src: url('react-website/src/assets/Spotify-Font/Gotham-Black.otf') format('opentype');
-  font-weight: 400;
+  src: url('./Gotham-Black.otf') format('opentype');
+  font-weight: 100;
   font-style: normal;
   color: black;
 }
 
 @font-face {
   font-family: 'BrooklynFont';
-  src: url('react-website/src/assets/Brooklyn/Brooklyn_Normal_1.otf') format('opentype');
-  font-weight: 400;
+  src: url('./Brooklyn_Normal_1.otf') format('opentype');
+  font-weight: 100;
   font-style: normal;
   color: black;
 }
 
 @font-face {
-    font-family: 'specialFont';
-    src: url('react-website\src\assets\Spotify-Font\GothamBook.ttf') format('truetype');
-    font-weight: 400;
+    font-family: 'spotifyFontLight';
+    src: url('./GothamBook.ttf') format('truetype');
+    font-weight: bold;
     font-style: normal;
     color: black;
 }

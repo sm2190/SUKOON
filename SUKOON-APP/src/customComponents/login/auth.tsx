@@ -14,7 +14,7 @@ const Auth = () => {
           Your browser does not support mp4s.
         </video>
 
-        <Heading className='loginStart-Heading'>
+        <Heading className='Sukoon-logo'>
           SUKOON
         </Heading>
 

@@ -104,7 +104,7 @@ const QRWait = () => {
   
 
   return (
-    <div>
+    <div style={{overflow: 'hidden'}}>
       <Box className='QRHeader'></Box>
       <Stack className='QRStack'>
         <Box className='QRIconContainer'>
@@ -142,10 +142,10 @@ const QRWait = () => {
         <Text color={'black'} transform={'translateY(-100%)'} textAlign={'center'} mb={-10}>
           Type in and submit your hub's link code:
         </Text>
-
+ 
         <Box width="130%" display="flex" flexDirection="column" p={0} m={0}>
-          <FormControl isInvalid={!!hubLinkError} width={'100%'} color={'black'}>
-            <Box className='OuterInputBox'>
+          <FormControl isInvalid={!!hubLinkError} width={'100%'} color={'black'} borderRadius={20}>
+            <Box className='OuterInputBox' borderRadius={20}>
               <Input
                 placeholder="Link Code"
                 className='InputData'
