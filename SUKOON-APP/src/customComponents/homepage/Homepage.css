@@ -3,12 +3,17 @@
 
     .homepageContainer {
         display: flex;
+        background: white;
+        columns: '#454545';
 
     }
 
     .homepageHeader {
         background: #6cce58;
         height: 25vw;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
     }
     
   }
