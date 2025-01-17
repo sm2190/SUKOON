@@ -58,6 +58,7 @@
         padding-left: 30px;
         border: none;
         height: 50px;
+        border-radius: 20px;
     }
 
     .next-Button {
