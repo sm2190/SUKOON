@@ -1,0 +1,15 @@
+/* login.css */
+@media (max-width: 480px) {
+
+    .homepageContainer {
+        display: flex;
+
+    }
+
+    .homepageHeader {
+        background: #6cce58;
+        height: 25vw;
+    }
+    
+  }
+  
