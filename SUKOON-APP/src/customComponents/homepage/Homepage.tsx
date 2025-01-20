@@ -18,8 +18,8 @@ const Homepage = () => {
     <div>
       <Stack className='homepageContainer'>
         <Box className='homepageHeader'>
-          <Heading bg={'transparent'} ml={'20px'} mt={'20px'} fontWeight={'extrabold'}>
-            Ya Halla, {username || 'guest'}
+          <Heading bg={'transparent'} ml={'20px'} mt={'20px'} fontWeight={'extrabold'} className='introHomepage'>
+            Ya Halla, <span className='guestIntro'>{username || 'guest'}</span>
           </Heading>
         </Box>
 
@@ -52,19 +52,27 @@ const Homepage = () => {
 
           </Lottie>
           <Box className='pulseBox'>
-            <Heading bg={'transparent'} fontWeight={'bold'}>
+            <Heading bg={'transparent'} fontWeight={'bold'} className='totalConsShow'>
               50.1KW/h
             </Heading>
 
           </Box>
           
         </Flex>
-        <Flex zIndex={2} display={'flex'} alignItems={'center'} justifyContent={'center'}>
-          <Heading color={'#05FF02'}>
+        <Flex zIndex={2} display={'flex'} alignItems={'center'} justifyContent={'center'} bg={'purple'}>
+          <Heading color={'#05FF02'} textDecor={'underline'}>
             Total Consumption
           </Heading>
 
         </Flex>
+
+        <HStack height={'50vw'} bg={'orange'}>
+          <Heading color={'#21334a'} fontSize={'120%'}>
+            Pinned
+          </Heading>
+
+          
+        </HStack>
         
       </Stack>
     </div>

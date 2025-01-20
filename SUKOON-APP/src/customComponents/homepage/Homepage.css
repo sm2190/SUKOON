@@ -52,6 +52,19 @@
 
     }
 
+    .introHomepage {
+        font-size: 170%;
+    }
+
+    .guestIntro, .totalConsShow {
+        font-family: 'SpotifyFont', sans-serif;
+        background: transparent;
+
+    }
+
+        
+    
+
   
     
   }
