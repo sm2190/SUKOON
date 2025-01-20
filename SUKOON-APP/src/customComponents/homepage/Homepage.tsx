@@ -59,14 +59,14 @@ const Homepage = () => {
           </Box>
           
         </Flex>
-        <Flex zIndex={2} display={'flex'} alignItems={'center'} justifyContent={'center'} bg={'purple'}>
+        <Flex zIndex={2} display={'flex'} alignItems={'center'} justifyContent={'center'}>
           <Heading color={'#05FF02'} textDecor={'underline'}>
             Total Consumption
           </Heading>
 
         </Flex>
 
-        <HStack height={'50vw'} bg={'orange'}>
+        <HStack height={'50vw'}>
           <Heading color={'#21334a'} fontSize={'120%'}>
             Pinned
           </Heading>
