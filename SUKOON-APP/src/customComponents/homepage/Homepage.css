@@ -8,7 +8,7 @@
         background: white;
         columns: '#454545';
         z-index: 1;
-
+        
     }
 
     .homepageHeader {
@@ -60,6 +60,11 @@
         font-family: 'SpotifyFont', sans-serif;
         background: transparent;
 
+    }
+
+    .pinnedHeader, .editHeader {
+        font-family: 'SpotifyFont', sans-serif;
+        color: #21334a;
     }
 
         

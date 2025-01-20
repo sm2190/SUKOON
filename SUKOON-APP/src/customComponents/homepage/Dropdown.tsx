@@ -1,4 +1,4 @@
-import { Heading, HStack, Menu } from '@chakra-ui/react';
+import { Heading, HStack } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import {
@@ -9,31 +9,36 @@ import {
 } from "@/components/ui/menu";
 import { MdArrowDropDown } from "react-icons/md";
 
-const Dropdown = () => {
-  // State to track selected item
-  const [selectedItem, setSelectedItem] = useState('Choose Home...');
+interface DropdownProps {
+  initialShow: string;
+}
+
+const Dropdown: React.FC<DropdownProps> = ({ initialShow }) => {
+  const [selectedItem, setSelectedItem] = useState<string>(initialShow);
 
   return (
-    <div>
+    <div style={{ background: 'transparent' }}>
       <MenuRoot>
-        <MenuTrigger asChild width={'120%'}>
-          <Button 
-            variant="outline" 
-            size="xs" 
-            color={'gray.300'} 
+        <MenuTrigger asChild>
+          <Button
+            variant="outline"
+            size="xs"
+            color={'gray.300'}
             borderRadius={20}
+            minWidth="120px"  // Set minimum width to prevent shrinking
+            maxWidth="200px"  // Limit maximum width
+            px={3}  // Add horizontal padding to prevent a squeezed look
           >
-            <HStack>
-                <Heading>
-                    {selectedItem}
-                </Heading>
-                <MdArrowDropDown/>
+            <HStack >
+              <Heading fontSize="sm" whiteSpace="nowrap">
+                {selectedItem}
+              </Heading>
+              <MdArrowDropDown />
             </HStack>
           </Button>
         </MenuTrigger>
 
         <MenuContent color={'#454545'}>
-          {/* Adding the 'value' prop to each MenuItem */}
           <MenuItem value="new-txt" color={'inherit'} onClick={() => setSelectedItem("New Text File")}>
             New Text File
           </MenuItem>

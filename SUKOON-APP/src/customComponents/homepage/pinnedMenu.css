@@ -1,0 +1,24 @@
+.addPinnedItem, .pinType {
+    font-family: 'SpotifyFont', sans-serif;
+    background: transparent;
+    color: #21334a;
+    font-size: 200%;
+}
+
+.pinType {
+    font-size: 120%;
+}
+
+.editStack {
+    margin: 20px 0 0 20px;
+}
+
+.mockRoom {
+    background-color: purple; 
+    width: calc(45%);
+    height: 150px;
+    margin: 10px 0px 10px 10px;
+    border-radius: 20px;
+    border-width: 2;
+
+}
