@@ -18,7 +18,7 @@ const Auth = () => {
           SUKOON
         </Heading>
 
-        <Heading className="loginStart-Heading" lineHeight={1.3}>
+        <Heading className="loginStart-Heading">
           Smarter choices for a better tomorrow!
         </Heading>
 

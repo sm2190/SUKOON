@@ -9,6 +9,8 @@ import { getAuth, signInWithEmailAndPassword, AuthError, fetchSignInMethodsForEm
 import { FormControl } from '@chakra-ui/form-control';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { IoChevronBack } from "react-icons/io5";
+
 
 const Login = () => {
 
@@ -140,6 +142,7 @@ const Login = () => {
             left="-15%"
             boxShadow="0 4px 8px rgba(0, 0, 0, 0.2)"
             onClick={goToAuth} // Navigate to Auth when clicked
+            top={'-120%'}
           >
             <Text color={'white'} bg={'transparent'}>&lt;</Text>
           </Button>

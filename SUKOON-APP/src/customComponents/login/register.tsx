@@ -10,6 +10,8 @@ import { useState } from 'react'
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
 import { FormControl } from '@chakra-ui/form-control'
+import { IoChevronBack } from "react-icons/io5";
+
 
 const Register = () => {
   
@@ -95,8 +97,8 @@ const Register = () => {
   
 
   return (
-    <div style={{ overflowX: 'hidden' }}> 
-      <Flex className='registerTop' overflow="hidden" position="relative" width="100%">
+    <div style={{overflow: 'auto'}}> 
+      <Flex className='registerTop' position="relative" width="100%">
         <img
           src={TopBorderImage}
           alt="border image"
@@ -122,6 +124,7 @@ const Register = () => {
             left="-15%"
             boxShadow='0 4px 8px rgba(0, 0, 0, 0.2)'
             onClick={goToAuth} 
+            top={'-10%'}
           >
             <Text color={'white'} bg={'transparent'}>&lt;</Text>
           </Button>

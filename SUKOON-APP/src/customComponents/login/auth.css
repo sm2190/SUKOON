@@ -1,5 +1,6 @@
 /* login.css */
 @media (max-width: 480px) {
+ 
   .loginStartStack {
     display: flex;
     flex-direction: column; /* Stack elements vertically */
@@ -8,6 +9,7 @@
     height: 100vh; /* Full viewport height */
     padding: 0 20px; /* Add side padding */
     position: relative; /* Ensure positioning context for video */
+    overflow: auto;
   }
 
   .loginAnimation {
@@ -29,11 +31,13 @@
     color: black;
     z-index: 1; /* Ensure text appears above the video */
     font-size: 170%;
+    line-height: 110%;
   }
 
   .loginStart-text {
     font-weight: bold;
     font-size: 110%;
+    
   }
 
   .loginStart-Heading {
@@ -59,6 +63,5 @@
     font-family: 'BrooklynFont', sans-serif;
     color: #3B8A2B;
     font-size: 300%;
-    margin-top: 20px;
   }
 }
