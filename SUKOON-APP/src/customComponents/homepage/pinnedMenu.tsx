@@ -5,7 +5,13 @@ import Dropdown from './Dropdown'
 import { VscClose } from "react-icons/vsc";
 
 
-const pinnedMenu = () => {
+const pinnedMenu = ({ isVisible, onClose, onPinItem}) => {
+
+    if (!isVisible) return null;
+
+    const handleItemClick = (index) => {
+        onPinItem(`MockRoom ${index + 1}`); // Pass item to Homepage
+    };
 
   return (
     <div style={{overflow: 'hidden'}}>
@@ -26,14 +32,14 @@ const pinnedMenu = () => {
             >
                 <Stack bg={'transparent'} className='editStack' spaceY={'20px'}>
                     
-                    <HStack bg={'transparent'} spaceX={'55%'}>
+                    <HStack bg={'transparent'} spaceX={'50%'}>
                         <Heading className='addPinnedItem'>
                             Pin Item
                             
                         </Heading>
                         
                         <Box bg={'transparent'}>
-                            <VscClose color='#21334a' style={{background: 'transparent'}}/>
+                            <VscClose color='#21334a' style={{background: 'transparent'}} onClick={onClose}/>
                         </Box>
                        
 
@@ -72,10 +78,19 @@ const pinnedMenu = () => {
                         <Box width={'100%'} height={'100%'} overflow={'scroll'}>
 
                             <Flex wrap="wrap" justify="start">
-                                <Box className='mockRoom' />
-                                <Box className='mockRoom' />
-                                <Box className='mockRoom' />
-                                <Box className='mockRoom' />
+                                {[...Array(4)].map((_, index) => (
+                                    <>
+
+                                        <Box key={`${index}-1`} className='mockRoom' onClick={() => handleItemClick(index)}>
+                                            MockRoom {index + 1}
+                                        </Box>
+                                        <Box key={`${index}-2`} className='mockRoom' onClick={() => handleItemClick(index)}>
+                                            MockRoom {index + 1}
+                                        </Box>
+                                    
+                                    </>
+                                    
+                                ))}
                             </Flex>
 
                         </Box>

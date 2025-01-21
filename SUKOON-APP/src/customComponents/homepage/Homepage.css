@@ -53,7 +53,8 @@
     }
 
     .introHomepage {
-        font-size: 170%;
+        font-size: 210%;
+        margin-bottom: 10px;
     }
 
     .guestIntro, .totalConsShow {

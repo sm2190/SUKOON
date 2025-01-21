@@ -1,5 +1,5 @@
 import { Box, Flex, Heading, HStack, Stack } from '@chakra-ui/react'
-import React from 'react'
+import React, { useState } from 'react'
 import './Homepage.css'
 import { MdArrowDropDown } from "react-icons/md";
 import Dropdown from './Dropdown.tsx'
@@ -17,6 +17,14 @@ import { useEffect } from 'react';
 
 const Homepage = () => {
   const username = sessionStorage.getItem('username');
+  const [isPinnedMenuVisible, setPinnedMenuVisible] = useState(false);
+
+  const [pinnedItems, setPinnedItems] = useState<string[]>([]);
+
+  const handlePinItem = (item: string) => {
+    setPinnedItems((prev) => [...prev, item]); // Add item to pinned list
+  };
+
 
   useEffect(() => {
     // Disable scrolling when pinnedMenu is open
@@ -27,6 +35,15 @@ const Homepage = () => {
       document.body.style.overflow = 'auto';
     };
   }, []);
+
+  useEffect(() => {
+    // Disable scrolling when pinnedMenu is open
+    if (isPinnedMenuVisible) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isPinnedMenuVisible]);
 
   return (
     <div style={{overflow: 'hidden'}}>
@@ -92,16 +109,21 @@ const Homepage = () => {
               </Heading>
             </Box>
 
-            <TbCirclePlusFilled color='#21334a' size={'20%'}/>
+            <TbCirclePlusFilled color='#21334a' size={'20%'} onClick={() => setPinnedMenuVisible(true)} />
 
           </HStack>
 
           
         </HStack>
 
-        <Flex justifyContent={'center'} display={'flex'} alignItems={'center'} alignContent={'center'}>
+        <Flex justifyContent={'center'} display={'flex'} alignItems={'center'} alignContent={'center'} zIndex={1}>
 
-          <Box bg={'#E4E4E7'} width={'95%'} height={'50vw'} borderColor={'#21334a'} borderRadius={20} borderWidth={2}>
+          <Box bg={'white'} width={'95%'} height={'50vw'} borderColor={'#21334a'} borderRadius={20} borderWidth={2} overflow={'scroll'}>
+            <Flex wrap="wrap">
+              {pinnedItems.map((item, index) => (
+                <Box key={index} className="mockRoom">{item}</Box>
+              ))}
+            </Flex>
 
           </Box>
 
@@ -112,7 +134,8 @@ const Homepage = () => {
         
       </Stack>
 
-      <PinnedMenu />
+      <PinnedMenu isVisible={isPinnedMenuVisible}
+          onClose={() => setPinnedMenuVisible(false)} onPinItem={handlePinItem}/>
     </div>
   )
 }
