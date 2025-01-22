@@ -1,5 +1,8 @@
 /* login.css */
 @media (max-width: 480px) {
+    body {
+        overflow: auto;
+    }
 
    
 
@@ -66,6 +69,10 @@
     .pinnedHeader, .editHeader {
         font-family: 'SpotifyFont', sans-serif;
         color: #21334a;
+    }
+
+    .pinnedinfoContainer {
+
     }
 
         

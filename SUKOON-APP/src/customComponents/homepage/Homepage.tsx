@@ -100,7 +100,7 @@ const Homepage = () => {
 
         </Flex>
 
-        <HStack ml="20px" zIndex={1} spaceX={'20%'} display={'flex'} mt={'20px'}>
+        <HStack ml="20px" zIndex={1} spaceX={'20%'} display={'flex'} mt={'20px'} className='pinnedinfoContainer'>
           <Heading fontSize={'220%'} className='pinnedHeader'>
             Pinned
           </Heading>
@@ -121,7 +121,7 @@ const Homepage = () => {
 
         <Flex justifyContent={'center'} display={'flex'} alignItems={'center'} alignContent={'center'} zIndex={1}>
 
-          <Box bg={'white'} width={'95%'} height={'50vw'} borderColor={'#21334a'} borderRadius={20} borderWidth={2} overflow={'scroll'}>
+          <Box bg={'white'} width={'95%'} height={'50vw'} overflow={'scroll'}>
             <Flex wrap="wrap" spaceX={'10px'} display={'flex'} alignItems={'center'} alignContent={'center'} justifyContent={'center'}>
               {pinnedItems.map((item, index) => (
                 // <Box key={index} className="mockRoom">{item}</Box>

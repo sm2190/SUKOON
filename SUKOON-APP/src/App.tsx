@@ -5,10 +5,16 @@ import Auth from '@/customComponents/login/auth.tsx';
 import Login from '@/customComponents/login/Login.tsx';
 import Homepage from '@/customComponents/homepage/Homepage.tsx'
 import PinnedMenu from './customComponents/homepage/pinnedMenu';
+import Navbar from './customComponents/navBar/Navbar';
 
 const App = () => {
   return (
-    <Homepage />
+    <div>
+      <Homepage />
+      <Navbar />
+
+    </div>
+    
   );
 };
 
