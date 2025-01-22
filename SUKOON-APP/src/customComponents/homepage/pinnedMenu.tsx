@@ -78,11 +78,18 @@ const pinnedMenu = ({ isVisible, onClose, onPinItem}) => {
                     >
                         <Box width={'100%'} height={'100%'} overflow={'scroll'}>
 
-                            <Flex wrap="wrap" justify="start">
+                            <Flex wrap="wrap" justify="start" display={'flex'} alignItems={'center'} alignContent={'center'} justifyContent={'center'} spaceX={'10px'}>
                                 {[...Array(4)].map((_, index) => (
                                     <>
-                                        <Mockroom key={`${index}-1`} onClick={() => handleItemClick(index)} roomNum={`${index}-1`}></Mockroom>
-                                        <Mockroom key={`${index}-1`} onClick={() => handleItemClick(index)} roomNum={`${index}-1`}></Mockroom>
+                                        <Box width={'calc(45%)'}>
+                                            <Mockroom key={`${index}-1`} style={{width: 'calc(100%)'}} onClick={() => handleItemClick(index)} roomNum={`${index}-1`}></Mockroom>
+
+                                        </Box>
+
+                                        <Box width={'calc(45%)'}>
+                                            <Mockroom key={`${index}-1`} style={{width: 'calc(100%)'}} onClick={() => handleItemClick(index)} roomNum={`${index}-1`}></Mockroom>
+
+                                        </Box>
                                     </>
                                     
                                 ))}

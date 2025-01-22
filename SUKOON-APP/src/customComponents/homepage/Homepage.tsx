@@ -12,7 +12,7 @@ import PulseAnimation from '@/images/animatedIcons/Animation - 1737092091343.jso
 import { TbCirclePlusFilled } from "react-icons/tb";
 import PinnedMenu from './pinnedMenu.tsx';
 import { useEffect } from 'react';
-
+import Mockroom from './Mockroom.tsx';
 
 
 const Homepage = () => {
@@ -20,6 +20,9 @@ const Homepage = () => {
   const [isPinnedMenuVisible, setPinnedMenuVisible] = useState(false);
 
   const [pinnedItems, setPinnedItems] = useState<string[]>([]);
+  const [isRemoveRoomVisibile, setRemoveRoomVisible] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+
 
   const handlePinItem = (item: string) => {
     setPinnedItems((prev) => [...prev, item]); // Add item to pinned list
@@ -103,7 +106,7 @@ const Homepage = () => {
           </Heading>
 
           <HStack display={'flex'}>
-            <Box bg={'#E4E4E7'} width={'70%'} height={'25px'} justifyContent={'center'} alignItems={'center'} alignContent={'center'} display={'flex'} borderRadius={20}>
+            <Box bg={'#E4E4E7'} width={'70%'} height={'25px'} justifyContent={'center'} alignItems={'center'} alignContent={'center'} display={'flex'} borderRadius={20} onClick={() => setIsEditing(!isEditing)}>
               <Heading className='editHeader' fontSize={'100%'} bg={'transparent'} justifyContent={'center'} alignItems={'center'} alignContent={'center'} mt={'2px'}>
                 Edit
               </Heading>
@@ -119,9 +122,18 @@ const Homepage = () => {
         <Flex justifyContent={'center'} display={'flex'} alignItems={'center'} alignContent={'center'} zIndex={1}>
 
           <Box bg={'white'} width={'95%'} height={'50vw'} borderColor={'#21334a'} borderRadius={20} borderWidth={2} overflow={'scroll'}>
-            <Flex wrap="wrap">
+            <Flex wrap="wrap" spaceX={'10px'} display={'flex'} alignItems={'center'} alignContent={'center'} justifyContent={'center'}>
               {pinnedItems.map((item, index) => (
-                <Box key={index} className="mockRoom">{item}</Box>
+                // <Box key={index} className="mockRoom">{item}</Box>
+                <Box width={'calc(45%)'}>
+                    <Mockroom style={{width: 'calc(100%)'}} roomNum={item} isEditing={isEditing} onRemove={() => {
+                        setPinnedItems(prev => prev.filter((_, i) => i !== index));
+                      }}>
+                      
+                    </Mockroom>
+                    
+
+                </Box>
               ))}
             </Flex>
 
