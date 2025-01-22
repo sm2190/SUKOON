@@ -6,11 +6,10 @@ import { FaCircleMinus } from "react-icons/fa6";
 const Mockroom = ({ roomNum, onClick }) => {
   return (
     <div>
-        <Box className='mockRoom' onClick={onClick}>
+        <Box className='mockRoom' onClick={onClick} width={'100px'} height={'100px'}>
             {roomNum}
             <FaCircleMinus style={{background: 'transparent', position: 'absolute', top: '5px', right: '5px'}} size={'20%'}/>
         </Box>
-      
     </div>
   )
 }
