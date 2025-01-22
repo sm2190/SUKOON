@@ -3,7 +3,8 @@ import React from 'react'
 import './pinnedMenu.css'
 import Dropdown from './Dropdown'
 import { VscClose } from "react-icons/vsc";
-
+import { FaCircleMinus } from "react-icons/fa6";
+import Mockroom from './Mockroom';
 
 const pinnedMenu = ({ isVisible, onClose, onPinItem}) => {
 
@@ -80,12 +81,15 @@ const pinnedMenu = ({ isVisible, onClose, onPinItem}) => {
                             <Flex wrap="wrap" justify="start">
                                 {[...Array(4)].map((_, index) => (
                                     <>
+                                        {/* <Mockroom key={`${index}-1`} onClick={() => handleItemClick(index)} roomNum={`${index}-1`}></Mockroom> */}
 
                                         <Box key={`${index}-1`} className='mockRoom' onClick={() => handleItemClick(index)}>
                                             MockRoom {index + 1}
+                                            <FaCircleMinus style={{background: 'transparent', position: 'absolute', top: '5px', right: '5px'}} size={'20%'}/>
                                         </Box>
                                         <Box key={`${index}-2`} className='mockRoom' onClick={() => handleItemClick(index)}>
                                             MockRoom {index + 1}
+                                            <FaCircleMinus  style={{background: 'transparent', position: 'absolute', top: '5px', right: '8px'}} size={'20%'}/>
                                         </Box>
                                     
                                     </>
