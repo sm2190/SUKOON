@@ -31,6 +31,8 @@ const ResetPassword = () => {
   };
 
 
+
+
   const handleReset = async(e: React.FormEvent<HTMLFormElement>) => {
 
     e.preventDefault();
@@ -88,6 +90,14 @@ const ResetPassword = () => {
     navigate('/'); // Navigate to the root Auth page
   };
 
+  const goToNewPass = () => {
+    navigate('/NewPass')
+  }
+
+  const goToResetPassword = () => {
+    navigate('/ResetPassword')
+  }
+
   
 
   return (
@@ -115,7 +125,7 @@ const ResetPassword = () => {
         bg={'#43eb7f'}
         position="absolute"
         boxShadow='0 4px 8px rgba(0, 0, 0, 0.2)'
-        onClick={goToAuth} 
+        onClick={goToResetPassword} 
         top={'10%'}
         left={'10%'}
       >
@@ -132,7 +142,7 @@ const ResetPassword = () => {
                     <input required={true} maxLength={1} type="text" className="otp-input" />
                     <input required={true} maxLength={1} type="text" className="otp-input" /> 
                 </div>
-                <button className="verifyButton" type="submit">Verify</button>
+                <button className="verifyButton" type="submit" onClick={goToNewPass}>Verify</button>
                 <p className="resendNote">Didn't receive the code? <button className="resendBtn">Resend Code</button></p>
                 
             </form>

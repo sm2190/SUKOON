@@ -6,6 +6,7 @@ import Login from '@/customComponents/login/Login.tsx';
 import QRWait from '@/customComponents/login/QRWait.tsx';
 import ResetPassword from '@/customComponents/login/ResetPassword.tsx';
 import OTP from '@/customComponents/login/OTP.tsx';
+import NewPass from '@/customComponents/login/NewPass.tsx';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
       <Route path="/QRWait" element={<QRWait />} />
       <Route path="/ResetPassword" element={<ResetPassword />} />
       <Route path="/OTP" element={<OTP />} />
+      <Route path="/NewPass" element={<NewPass />} />
       
     </Routes>
   );
