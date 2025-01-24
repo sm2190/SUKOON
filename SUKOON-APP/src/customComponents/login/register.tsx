@@ -111,25 +111,26 @@ const Register = () => {
         />
       </Flex>
 
-      <Stack className='signUpDataInputStack' spaceY={3}>
-        <Flex alignItems="center" width="100%" display={'flex'}>
-          {/* Back Button */}
-          <Button
-            borderRadius={200}
-            width="30px"
-            height="40px"
-            display={'flex'}
-            bg={'#43eb7f'}
-            position="absolute"
-            left="-15%"
-            boxShadow='0 4px 8px rgba(0, 0, 0, 0.2)'
-            onClick={goToAuth} 
-            top={'-10%'}
-          >
+      {/* Back Button */}
+      <Button
+        borderRadius={200}
+        width="30px"
+        height="40px"
+        display={'flex'}
+        bg={'#43eb7f'}
+        position="absolute"
+        boxShadow='0 4px 8px rgba(0, 0, 0, 0.2)'
+        onClick={goToAuth} 
+        top={'10%'}
+        left={'10%'}
+      >
             <Text color={'white'} bg={'transparent'}>&lt;</Text>
-          </Button>
+      </Button>
 
-          <Heading textAlign="center" width="100%" color={'black'}>
+      <Stack className='signUpDataInputStack' spaceY={3} bg={'transparent'}>
+        <Flex alignItems="center" width="100%" display={'flex'} bg={'transparent'}>
+
+          <Heading textAlign="center" width="100%" color={'black'} bg={'transparent'}>
             Sign Up
           </Heading>
         </Flex>

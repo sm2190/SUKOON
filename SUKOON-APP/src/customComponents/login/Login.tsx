@@ -111,10 +111,15 @@ const Login = () => {
     navigate('/QRWait'); // Navigate to the root Auth page
   };
 
+  const goToResetPassword = () => {
+    navigate('/ResetPassword')
+  }
+
   
 
   return (
     <div style={{ overflowX: 'hidden' }}>
+
       <Flex className='registerTop' overflow="hidden" position="relative" width="100%">
         {/* Image */}
         <img
@@ -129,8 +134,8 @@ const Login = () => {
         />
       </Flex>
 
-      <Stack className='signUpDataInputStack' spaceY={3} transform={'translate(-50%, -80%)'}>
-        <Flex alignItems="center" width="100%" display={'flex'} position="relative">
+      <Stack className='signUpDataInputStack' spaceY={3} transform={'translate(-50%, -80%)'} bg={'transparent'} mt={'90%'}>
+        <Flex alignItems="center" width="100%" display={'flex'} position="relative" bg={'transparent'}>
           {/* Back Button */}
           <Button
             borderRadius={200}
@@ -148,7 +153,7 @@ const Login = () => {
           </Button>
 
           {/* Log In Heading */}
-          <Heading textAlign="center" width="100%" color={'black'}>
+          <Heading textAlign="center" width="100%" color={'black'} bg={'transparent'}>
             Log In
           </Heading>
         </Flex>
@@ -196,19 +201,48 @@ const Login = () => {
         
           </FormControl>
         </Box>
+        
+        <Flex 
+        width={'100%'} 
+        display={'flex'} 
+        flexDir={'column'} 
+        justifyContent={'center'} 
+        alignItems={'center'}
+      >
+          <Button 
+            className='next-Button' 
+            backgroundColor={'#6cce58'} 
+            color={'#f6f6f6'} 
+            onClick={(e) => {
+              e.preventDefault(); 
+              handleLogin(e as unknown as React.FormEvent<HTMLFormElement>);
+            }}
+          >
+            Next
+          </Button>
 
-        <Button className='next-Button' backgroundColor={'#6cce58'} color={'#f6f6f6'} 
-          onClick={(e) => {
-            e.preventDefault(); // Mimics the behavior of form submission
-            handleLogin(e as unknown as React.FormEvent<HTMLFormElement>);
-          }}>
-          Next
-        </Button>
-        {(emailError || passwordError) && <Text color={'red.500'} fontSize={'sm'}>Invalid Email or Password</Text>}
+          {/* Reserve space to prevent layout shifting */}
+          <Text 
+            color={'red.500'} 
+            fontSize={'sm'} 
+            minH="20px" 
+            visibility={emailError || passwordError ? 'visible' : 'hidden'} 
+          >
+            Invalid Email or Password
+          </Text>
+        </Flex>
 
-        <Text className='registeryText'>
-          Don't have an account? <span style={{ color: "#6cce58", textDecoration: 'underline'}} onClick={goToQR}> Sign Up!</span>
-        </Text>
+        <Stack display={'flex'} justifyContent={'center'} alignItems={'center'} alignContent={'center'} spaceY={-3}>
+          <Text className='registeryText'>
+            Don't have an account? <span style={{ color: "#6cce58", textDecoration: 'underline'}} onClick={goToQR}> Sign Up!</span>
+          </Text>
+          <Text className='registeryText' style={{ color: "#6cce58", textDecoration: 'underline'}} onClick={goToResetPassword}>
+            Forgot password?
+          </Text>
+
+        </Stack>
+        
+
 
         <div className="buttons-container">
           <div className="apple-login-button">
