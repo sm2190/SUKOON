@@ -62,7 +62,7 @@
         margin-bottom: 10px;
     }
 
-    .guestIntro, .totalConsShow {
+    .guestIntro, .totalConsShow, .totConsHeading {
         font-family: 'SpotifyFont', sans-serif;
         background: transparent;
 
@@ -78,6 +78,8 @@
 
 
     }
+
+    
         
     
 

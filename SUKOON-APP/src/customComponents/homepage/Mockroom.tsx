@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import './pinnedMenu.css'
 import { FaCircleMinus } from "react-icons/fa6";
 
@@ -11,7 +11,10 @@ interface MockroomProps {
   style?: React.CSSProperties; // Optional style object
 }
 
+
+
 const Mockroom: React.FC<MockroomProps> = ({ roomNum, onClick, style, onRemove, isEditing= false }) => {
+
   return (
     <div>
         <Box className='mockRoom' onClick={onClick} height={'150px'} width="calc(45%)" style={style}>
