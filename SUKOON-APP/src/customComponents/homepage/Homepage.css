@@ -11,6 +11,8 @@
         background: white;
         columns: '#454545';
         z-index: 1;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
         
     }
 
@@ -71,10 +73,11 @@
         color: #21334a;
     }
 
-    .pinnedinfoContainer {
+    .shadowPinned {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
 
     }
-
         
     
 

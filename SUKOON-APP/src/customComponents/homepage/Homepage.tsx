@@ -13,6 +13,9 @@ import { TbCirclePlusFilled } from "react-icons/tb";
 import PinnedMenu from './pinnedMenu.tsx';
 import { useEffect } from 'react';
 import Mockroom from './Mockroom.tsx';
+import { MdOutlinePhoneAndroid } from "react-icons/md";
+import { BsGraphUpArrow } from "react-icons/bs";
+import { MdOutlineBatterySaver } from "react-icons/md";
 
 
 const Homepage = () => {
@@ -27,6 +30,14 @@ const Homepage = () => {
   const handlePinItem = (item: string) => {
     setPinnedItems((prev) => [...prev, item]); // Add item to pinned list
   };
+
+
+  // Disable editing mode if there are no pinned items
+  useEffect(() => {
+    if (pinnedItems.length === 0) {
+      setIsEditing(false);
+    }
+  }, [pinnedItems]);
 
 
   useEffect(() => {
@@ -70,9 +81,9 @@ const Homepage = () => {
 
         <Flex display={'flex'} justifyContent={'center'} alignItems={'center'} alignContent={'center'} mt={'25px'} zIndex={1} bg={'transparent'}>
           <HStack spaceX={-5} justifyContent={'center'} alignItems={'center'} alignContent={'center'}>
-            <MiniDisplays Icon={FcTwoSmartphones} title="Active devices:" value="8"></MiniDisplays>
-            <MiniDisplays Icon={FcPositiveDynamic} title="Home Status:" value="Good"></MiniDisplays>
-            <MiniDisplays Icon={FcChargeBattery} title="Energy Generation:" value="50KW/h"></MiniDisplays>
+            <MiniDisplays Icon={MdOutlinePhoneAndroid} title="Active devices:" value="8"></MiniDisplays>
+            <MiniDisplays Icon={BsGraphUpArrow} title="Home Status:" value="Good"></MiniDisplays>
+            <MiniDisplays Icon={MdOutlineBatterySaver} title="Energy Generation:" value="50KW/h"></MiniDisplays>
           </HStack>
         </Flex>
 
@@ -99,25 +110,26 @@ const Homepage = () => {
           </Heading>
 
         </Flex>
+        <Flex className='shadowPinned'>
+          <HStack ml="20px" zIndex={1} spaceX={'20%'} display={'flex'} mt={'20px'} className='pinnedinfoContainer'>
+            <Heading fontSize={'220%'} className='pinnedHeader'>
+              Pinned
+            </Heading>
 
-        <HStack ml="20px" zIndex={1} spaceX={'20%'} display={'flex'} mt={'20px'} className='pinnedinfoContainer'>
-          <Heading fontSize={'220%'} className='pinnedHeader'>
-            Pinned
-          </Heading>
+            <HStack display={'flex'} bg={'transparent'}>
+              <Box bg={'#E4E4E7'} width={'70%'} height={'25px'} justifyContent={'center'} alignItems={'center'} alignContent={'center'} display={'flex'} borderRadius={20} onClick={() => setIsEditing(!isEditing)}>
+                <Heading className='editHeader' fontSize={'100%'} bg={'transparent'} justifyContent={'center'} alignItems={'center'} alignContent={'center'} mt={'2px'}>
+                  Edit
+                </Heading>
+              </Box>
 
-          <HStack display={'flex'}>
-            <Box bg={'#E4E4E7'} width={'70%'} height={'25px'} justifyContent={'center'} alignItems={'center'} alignContent={'center'} display={'flex'} borderRadius={20} onClick={() => setIsEditing(!isEditing)}>
-              <Heading className='editHeader' fontSize={'100%'} bg={'transparent'} justifyContent={'center'} alignItems={'center'} alignContent={'center'} mt={'2px'}>
-                Edit
-              </Heading>
-            </Box>
+              <TbCirclePlusFilled color='#21334a' size={'20%'} onClick={() => setPinnedMenuVisible(true)} />
 
-            <TbCirclePlusFilled color='#21334a' size={'20%'} onClick={() => setPinnedMenuVisible(true)} />
+            </HStack>
 
+            
           </HStack>
-
-          
-        </HStack>
+        </Flex>
 
         <Flex justifyContent={'center'} display={'flex'} alignItems={'center'} alignContent={'center'} zIndex={1}>
 
@@ -126,7 +138,7 @@ const Homepage = () => {
               {pinnedItems.map((item, index) => (
                 // <Box key={index} className="mockRoom">{item}</Box>
                 <Box width={'calc(45%)'}>
-                    <Mockroom style={{width: 'calc(100%)'}} roomNum={item} isEditing={isEditing} onRemove={() => {
+                    <Mockroom style={{width: 'calc(100%)'}} roomNum={item} isEditing={isEditing && pinnedItems.length > 0} onRemove={() => {
                         setPinnedItems(prev => prev.filter((_, i) => i !== index));
                       }}>
                       
