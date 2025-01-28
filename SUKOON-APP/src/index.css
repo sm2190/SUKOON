@@ -1,7 +1,7 @@
 body {
-    background-color: white;
-    font-family: 'spotifyFontLight', sans-serif;
-    font-weight: bold;
+  background-color: white;
+  font-family: 'spotifyFontLight', sans-serif;
+  font-weight: bold;
 }
 
 * {
@@ -17,7 +17,7 @@ body {
 @font-face {
   font-family: 'SpotifyFont';
   src: url('./Gotham-Black.otf') format('opentype');
-  font-weight: 100;
+  font-weight: 400;  
   font-style: normal;
   color: black;
 }
@@ -31,11 +31,11 @@ body {
 }
 
 @font-face {
-    font-family: 'spotifyFontLight';
-    src: url('./GothamBook.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-    color: black;
+  font-family: 'spotifyFontLight';
+  src: url('./Spotify-Font/GothamBook.ttf') format('truetype'); 
+  font-weight: bold;
+  font-style: normal;
+  color: black;
 }
 
 *,
@@ -46,13 +46,18 @@ body {
   box-sizing: border-box;
 }
 
-
 html, body {
-    height: 100%;
-  }
-  
-  #root {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
+  height: 100%;
+}
+
+#root {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.introGuest,
+.totalConsShow,
+.totConsHeading {
+  font-family: 'SpotifyFont', sans-serif;
+}
