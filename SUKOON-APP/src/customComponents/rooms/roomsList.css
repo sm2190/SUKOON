@@ -1,3 +1,4 @@
+
 /* Ensure the body and html elements fill the viewport */
 html, body {
     height: 100%;  /* Full height */
@@ -38,14 +39,23 @@ header h1, header h2 {
     padding: 1rem;
     cursor: pointer;
     text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: white; /* White background for each room card */
-    border-radius: 8px;
-    /* Adjust card dimensions for responsive design */
+    border-radius: 8px; /* Rounded corners */
     width: 100%;
-    height: auto;  /* Allow height to adjust based on content */
-    /* Reduced height for cards to avoid elongation */
+    height: auto;
+    transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
 }
+
+/* Add hover effect */
+.room-card:hover {
+    transform: translateY(-5px); /* Slight lift */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); /* Stronger shadow */
+    background-color: #f5f5f5; /* Light grey highlight */
+}
+
+
+
+
 
 /* Room images styling */
 .room-card img {
@@ -147,8 +157,7 @@ button:hover {
 .modal-container {
     background-color: #fff;
     width: 400px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /*border-radius: 8px;*/
     position: relative;
     padding: 20px;
 }

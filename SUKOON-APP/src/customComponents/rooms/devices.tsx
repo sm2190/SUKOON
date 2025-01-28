@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Box, Grid, GridItem, Text, VStack, HStack, Image, Center } from '@chakra-ui/react';
-
+import { Box, Grid, GridItem, Text, VStack, Image, Center } from '@chakra-ui/react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import ToggleButton from './toggleButton';
 import AddDeviceButton from './addDeviceButton';
 
@@ -33,65 +33,77 @@ const Devices = () => {
   };
 
   return (
-    <Box p={5} bg="linear-gradient(135deg, #d3f4e2, #b6e6c3)" minH="100vh">
-      {/* Room Name */}
-      <Text fontSize="4xl" fontWeight="bold" mb={10} color="black" textAlign="center">
-        Living Room
-      </Text>
+    <Box bg="white" minH="100vh" p={4}>
+      {/* Room Header */}
+      <Box
+        bg="#6CCE58"
+        p={6}
+        borderRadius="lg"
+        boxShadow="md"
+        textAlign="center"
+        mb={6}
+      >
+        <Text fontSize="2xl" fontWeight="bold" color="white">
+          Living Room
+        </Text>
+        <Text fontSize="sm" color="whiteAlpha.800" mt={1}>
+          Manage your devices seamlessly
+        </Text>
+      </Box>
 
       {/* Devices Grid */}
-      <Grid templateColumns="repeat(2, 1fr)" gap={10} maxW="1200px">
+      <Grid templateColumns={{ base: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }} gap={4}>
         {devices.map((device) => (
           <GridItem key={device.id}>
             <VStack
-              align="center"
-              p={5}
-              bg="rgba(245, 245, 245, 0.4)" // Lighter transparency for the card background
-              borderRadius="lg" // Rounded corners
-              boxShadow="0 4px 12px rgba(0, 0, 0, 0.1)" // Subtle shadow for depth
+              p={4}
+              bg="white"
+              borderRadius="lg"
+              boxShadow="base"
+              border={device.isOn ? '2px solid #66BB6A' : '1px solid #e0e0e0'}
               transition="all 0.3s ease"
               _hover={{
-                transform: 'scale(1.05)', // Slight scale effect for interactivity
-                boxShadow: '0 10px 20px rgba(0, 0, 0, 0.15)', // Stronger shadow on hover
+                transform: 'scale(1.05)',
+                boxShadow: 'lg',
               }}
             >
-              {/* HStack for image and toggle button */}
-              <HStack align="center" justify="space-between" w="full">
-                <Image
-                  src={device.image}
-                  alt={device.name}
-                  boxSize="60px"
-                  borderRadius="md"
-                  bg={device.isOn ? 'green.200' : 'gray.200'}
-                  border={device.isOn ? '4px solid rgba(0, 255, 0, 0.6)' : 'none'}
-                  boxShadow={device.isOn ? '0 0 15px rgba(0, 255, 0, 0.6)' : 'none'}
-                  transition="all 0.3s ease-in-out"
-                />
-                <Box ml={2}>
-                  <ToggleButton isOn={device.isOn} onToggle={() => toggleDevice(device.id)} />
-                </Box>
-              </HStack>
+              {/* Device Icon (Link wrapped around the Image) */}
+              <Box position="relative">
+                <Link to={`/device/${device.id}`}>
+                  <Image
+                    src={device.image}
+                    alt={device.name}
+                    boxSize="64px"
+                    borderRadius="full"
+                    bg={device.isOn ? 'green.50' : 'gray.50'}
+                    p={2}
+                    transition="all 0.3s ease"
+                  />
+                </Link>
+              </Box>
 
               {/* Device Name */}
-              <Text fontSize="md" fontWeight="semibold" color="black" mt={2} textAlign="center">
+              <Text fontSize="md" fontWeight="medium" color="gray.700">
                 {device.name}
               </Text>
+
+              {/* Toggle Button */}
+              <ToggleButton isOn={device.isOn} onToggle={() => toggleDevice(device.id)} />
             </VStack>
           </GridItem>
         ))}
-
-        {/* Add New Device Button */}
-        <GridItem colSpan={2}>
-          <Center>
-            <AddDeviceButton />
-          </Center>
-        </GridItem>
       </Grid>
+
+      {/* Add New Device Button */}
+      <Center mt={6}>
+        <AddDeviceButton />
+      </Center>
     </Box>
   );
 };
 
 export default Devices;
+
 
 
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, Box, Text, Image, Grid, Heading, Flex } from '@chakra-ui/react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate to handle navigation
-import AddRoom from './addRooms'; // Assuming you have this component for adding rooms
+import { useNavigate } from 'react-router-dom'; 
+import AddRoom from './addRooms'; 
 
 // Import room images
 import LivingRoomImg from '@/images/roomsImage/livingRoom.jpeg';
@@ -13,11 +13,11 @@ import OfficeImg from '@/images/roomsImage/office.jpg';
 import DiningImg from '@/images/roomsImage/Dining.webp';
 import LaundryImg from '@/images/roomsImage/laundry.jpg';
 
-// Placeholder user image icon
+// Placeholder user image
 import PlaceholderUserImage from '@/images/roomsImage/userCircle.png';
 
 const RoomList = () => {
-  const navigate = useNavigate(); // Initialize the navigate function
+  const navigate = useNavigate(); 
 
   const [rooms, setRooms] = useState([
     { id: 1, name: 'Living Room', image: LivingRoomImg, devices: 5 },
@@ -33,10 +33,7 @@ const RoomList = () => {
   const [showAddRoom, setShowAddRoom] = useState(false);
 
   const handleAddRoom = (newRoom: any) => {
-    // Dynamically set the room ID based on the current length of rooms
     const newRoomId = rooms.length ? rooms[rooms.length - 1].id + 1 : 1;
-
-    // Add the new room with the dynamically generated ID
     setRooms([...rooms, { ...newRoom, id: newRoomId }]);
     setShowAddRoom(false);
   };
@@ -77,14 +74,20 @@ const RoomList = () => {
         {rooms.map((room) => (
           <Box
             key={room.id}
-            borderWidth="1px"
             borderRadius="20px"
             overflow="hidden"
-            boxShadow="lg"
             bg="white"
             p={4}
-            cursor="pointer" // Change the cursor to indicate it's clickable
-            onClick={() => navigate(`/devices/${room.id}`)} // Navigate to devices page with roomId
+            cursor="pointer"
+            transition="all 0.3s ease-in-out"
+            boxShadow="0px 5px 10px rgba(0, 0, 0, 0.05)" // Soft elevation
+            border="1px solid rgba(0, 0, 0, 0.08)" // Light border for depth
+            _hover={{
+              transform: "translateY(-5px)", // Slight lift
+              boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.1)", // Stronger shadow on hover
+              backgroundColor: "#f5f5f5", // Light grey highlight on hover
+            }}
+            onClick={() => navigate(`/devices/${room.id}`)}
           >
             <Image
               src={room.image}
@@ -111,4 +114,5 @@ const RoomList = () => {
 };
 
 export default RoomList;
+
 
