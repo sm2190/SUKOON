@@ -1,15 +1,17 @@
-import { Routes, Route } from 'react-router-dom';
-import RoomList from './customComponents/rooms/roomsList'; // Path to RoomList
-import Devices from './customComponents/rooms/devices'; // Path to Devices page
-//import DeviceDetailPage from './customComponents/rooms/ACControlPage'; // Path to DeviceDetailPage
-import ACControlPage from './customComponents/rooms/ACControlPage';
+// App.tsx
+import { Route, Routes } from 'react-router-dom'; // Import Routes and Route
+import Register from '@/customComponents/login/register.tsx';
+import Auth from '@/customComponents/login/auth.tsx';
+import Login from '@/customComponents/login/Login.tsx';
+// Ensure the correct path to your Statistics component
 
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<RoomList />} />
-      <Route path="/devices/:roomId" element={<Devices />} />
-      <Route path="/device/:id" element={<ACControlPage/>} /> {/* Add route for device details */}
+      <Route path="/" element={<Auth />} />         {/* Home or Auth page */}
+      <Route path="/login" element={<Login />} />   {/* Login page */}
+      <Route path="/register" element={<Register />} /> {/* Register page */}
+      
     </Routes>
   );
 };
