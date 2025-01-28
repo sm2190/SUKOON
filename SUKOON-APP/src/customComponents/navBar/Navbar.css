@@ -1,0 +1,11 @@
+@media (max-width: 480px) {
+    .navContainer {
+        width: 100%;
+        background-color: orange;
+        z-index: 1;
+        position: fixed;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+
+    }
+}
