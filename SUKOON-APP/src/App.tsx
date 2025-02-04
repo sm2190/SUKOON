@@ -7,8 +7,15 @@ import QRWait from '@/customComponents/login/QRWait.tsx';
 import ResetPassword from '@/customComponents/login/ResetPassword.tsx';
 import OTP from '@/customComponents/login/OTP.tsx';
 import NewPass from '@/customComponents/login/NewPass.tsx';
-import Statistics from '@/customComponents/stats/stats_mainpage'; // Ensure the correct path to your Statistics component
-
+import AccInfo from '@/customComponents/account/AccInfo.tsx';
+import AccountsPage from '@/customComponents/account/AccountsPage.tsx';
+import Rate from '@/customComponents/account/Rate.tsx';
+import SupportCenter from '@/customComponents/account/SupportCenter.tsx';
+import ThirdPartyServices from '@/customComponents/account/ThirdPartyServices.tsx';
+import MoreTools from '@/customComponents/account/MoreTools.tsx';
+import SettingsPage from '@/customComponents/settings/SettingsPage.tsx';
+import Security from '@/customComponents/settings/Security.tsx';
+import Notifications from '@/customComponents/settings/Notifications.tsx';
 const App = () => {
   return (
     <Routes>
@@ -19,7 +26,15 @@ const App = () => {
       <Route path="/ResetPassword" element={<ResetPassword />} /> {/* Reset Password page */}
       <Route path="/OTP" element={<OTP />} /> {/* OTP page */}
       <Route path="/NewPass" element={<NewPass />} /> {/* New Password page */}
-      <Route path="/stats" element={<Statistics />} /> {/* Statistics page */}
+      <Route path="/accinfo" element={<AccInfo />} /> {/* Account Info page */}
+      <Route path="/accountspage" element={<AccountsPage />} /> {/* Accounts Page */}
+      <Route path="/rate" element={<Rate />} /> {/* Rate page */}
+      <Route path="/support" element={<SupportCenter />} /> {/* SupportCenter page */}
+      <Route path="/services" element={<ThirdPartyServices />} /> {/* ThirdPartyServices page */}
+      <Route path="/tools" element={<MoreTools />} /> {/* MoreTools page */}
+      <Route path="/settings" element={<SettingsPage />} /> {/* Settings page */}
+      <Route path="/security" element={<Security />} /> {/* Security page */}
+      <Route path="/notifications" element={<Notifications />} /> {/* Notifications page */}
     </Routes>
   );
 };
